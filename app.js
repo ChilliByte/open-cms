@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
   secret: 'keyboard cat',
-  store:  new connectMongoStore({ url: app.get("mongo-dburl") })
+  store:  new connectMongoStore({ url: process.env.DBURL })
 }))
 
 // respond with "hello world" when a GET request is made to the homepage
