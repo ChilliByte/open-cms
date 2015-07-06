@@ -3,7 +3,7 @@ shopping-experiment
 
 A test in making a cart-less shopping service.
 
-[![](https://codeship.com/projects/4c62af40-0471-0133-8447-52ca95efad4a/status?branch=master)](https://codeship.com/projects/89360)
+[![](https://codeship.com/projects/4c62af40-0471-0133-8447-52ca95efad4a/status?branch=masters)(https://codeship.com/projects/89360) 
 
 On Heroku at [shopping-experiment.herokuapp.com](https://shopping-experiment.herokuapp.com/).
 
