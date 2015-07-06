@@ -2,7 +2,9 @@
 <form action="/admin/authorise" method="POST">
   {{#if denied}}<em>You need to login, with the correct password.</em>{{/if}}
   <br>
-  <strong>Password:</strong>
-  <br><input name="password" type="password" value="">
-  <br><input type="submit" value="Login">
+  <label for="password">
+    <strong>Password:</strong>
+  </label>
+  <input name="password" type="password" value="">
+  <input type="submit" value="Login">
 </form>
