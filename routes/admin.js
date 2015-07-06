@@ -40,17 +40,17 @@ router.post("/authorise", function(req,res) {
   }
 });
 
-router.get("/admin/login", isAdmin, function(req,res){
+router.get("/login", isAdmin, function(req,res){
   res.redirect("/admin/authorise");
 });
 
-router.get("/admin/deauthorise", function(req, res){
+router.get("/deauthorise", function(req, res){
   var sess = req.session;
   sess.isAdmin = false;
   res.redirect("/");
 });
 
-router.get("/admin/logout", isAdmin, function(req,res){
+router.get("/logout", isAdmin, function(req,res){
   res.redirect("/admin/deauthorise");
 });
 
