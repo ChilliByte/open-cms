@@ -21,9 +21,19 @@ app.use(session({
   store:  new connectMongoStore({ url: process.env.DBURL })
 }))
 
+app.locals.site = {
+  title: process.env.SITE_TITLE || "My Shop"
+}
+
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
   res.send('hello world');
 });
+
+if(process.env.ADMIN_PANEL=="false"){
+  // Admin Panel is disabled, and is therefore inaccessible.
+}else{
+  app.use('/admin', require("./routes/admin"));
+}
 
 module.exports = app;

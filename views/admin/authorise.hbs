@@ -1,0 +1,8 @@
+<hr>
+<form action="/admin/login" method="POST">
+  {{#if denied}}<em>You need to login, with the correct password.</em>{{/denied}}
+  <br>
+  <strong>Password:</strong>
+  <br><input name="password" type="password" value="">
+  <br><input type="submit" value="Login">
+</form>
