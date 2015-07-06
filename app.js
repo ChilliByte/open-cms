@@ -27,7 +27,14 @@ app.locals.site = {
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.render('index');
+});
+
+app.get('/about', function(req, res) {
+  res.render('message', {
+    title: 'About',
+    message: 'This is an experimental cart-less shoppping system.'
+  });
 });
 
 if(process.env.ADMIN_PANEL=="false"){
