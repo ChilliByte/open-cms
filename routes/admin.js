@@ -59,7 +59,7 @@ router.get("/", isAdmin, function(req,res){
 });
 
 router.get("/products", isAdmin, function(req,res){
-  var products = db.collection('products');
+  var products = req.db.collection('products');
   products.find(function(err, docs) {
     var newDocs;
     // docs is an array of all the documents in mycollection
@@ -78,7 +78,7 @@ router.get("/products/add", isAdmin, function(req,res){
 });
 
 router.post("/products/add", isAdmin, function(req,res){
-  var products = db.collection('products');
+  var products = req.db.collection('products');
   var newProduct = {};
   newProduct.title = req.body.title;
   newProduct.content = req.body.content;
