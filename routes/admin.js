@@ -86,7 +86,7 @@ router.post("/products/add", isAdmin, function(req,res){
     if(err){
       res.send("Error adding product. \n"+err)
     }else{
-      res.redirect("/product/"+doc._id);
+      res.redirect("/products/"+doc._id);
     }
   });
 });
