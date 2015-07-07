@@ -45,6 +45,8 @@ app.get('/about', function(req, res) {
   });
 });
 
+app.use('/products', require("./routes/products"));
+
 if(process.env.ADMIN_PANEL=="false"){
   // Admin Panel is disabled, and is therefore inaccessible.
 }else{
