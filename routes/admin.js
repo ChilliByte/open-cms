@@ -58,5 +58,37 @@ router.get("/", isAdmin, function(req,res){
   res.render("admin/index");
 });
 
+router.get("/products", isAdmin, function(req,res){
+  var products = db.collection('products');
+  products.find(function(err, docs) {
+    var newDocs;
+    // docs is an array of all the documents in mycollection
+    for(var i in docs){
+      var x = docs[i];
+      newDocs.push(x);
+    }
+    res.render('admin/products', {
+      docs: newDocs
+    })
+  });
+});
+
+router.get("/products/add", isAdmin, function(req,res){
+  res.render('admin/products-add', {});
+});
+
+router.post("/products/add", isAdmin, function(req,res){
+  var products = db.collection('products');
+  var newProduct = {};
+  newProduct.title = req.body.title;
+  newProduct.content = req.body.content;
+  products.insert(newProduct, function(err, doc) {
+    if(err){
+      res.send("Error adding product. \n"+err)
+    }else{
+      res.redirect("/product/"+doc._id);
+    }
+  });
+});
 
 module.exports = router;
