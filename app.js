@@ -26,6 +26,7 @@ app.use(session({
 var db = mongojs(process.env.DBURL);
 app.use(function (req, res, next){
   req.db = db;
+  req.ObjectId = mongojs.ObjectId;
   next();
 });
 
