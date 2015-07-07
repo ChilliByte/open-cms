@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
+var mongojs = require('mongojs');
 var session = require('express-session');
 var connectMongoStore = require('connect-mongo')(session);
 var app = express();
@@ -21,6 +22,12 @@ app.use(session({
   secret: 'keyboard cat',
   store:  new connectMongoStore({ url: process.env.DBURL })
 }))
+
+var db = mongojs(process.env.DBURL);
+app.use(function (req, res, next){
+  req.db = db;
+  next();
+});
 
 app.locals.site = {
   title: process.env.SITE_TITLE || "My Shop"
