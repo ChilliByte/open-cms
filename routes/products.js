@@ -20,9 +20,7 @@ router.get("/", function(req, res){
 router.get("/:id", function(req, res){
   var products = req.db.collection('products');
   products.findOne({ _id: req.params.id },function(err, doc) {
-    res.render('products/item', {
-      product: doc
-    })
+    res.render('products/item', doc)
   });
 });
 
