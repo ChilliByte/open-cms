@@ -61,7 +61,7 @@ router.get("/", isAdmin, function(req,res){
 router.get("/products", isAdmin, function(req,res){
   var products = req.db.collection('products');
   products.find(function(err, docs) {
-    var newDocs;
+    var newDocs = [];
     // docs is an array of all the documents in mycollection
     for(var i in docs){
       var x = docs[i];
