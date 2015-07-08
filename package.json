@@ -19,6 +19,7 @@
     "express": "^4.5.1",
     "express-session": "^1.11.1",
     "hbs": "~3.0.1",
+    "medium-editor": "^5.3.0",
     "method-override": "^2.3.3",
     "mongojs": "^1.0.2",
     "mongoose": "^4.0.2",

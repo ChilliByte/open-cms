@@ -33,6 +33,9 @@ app.use(function (req, res, next){
 app.locals.site = {
   title: process.env.SITE_TITLE || "My Shop"
 }
+app.use(function(req, res){
+  res.locals.session = req.session;
+});
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
