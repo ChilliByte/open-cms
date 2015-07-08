@@ -21,7 +21,14 @@ router.get("/:id", function(req, res){
   var products = req.db.collection('products');
   products.findOne({ _id: req.ObjectId(req.params.id) },function(err, doc) {
     console.log(doc);
-    res.render('products/item', doc);
+    if(doc._id){
+      res.render('products/item', doc);
+    }else {
+      res.render('message', {
+        title:   '404',
+        message: 'Product not found.'
+      });
+    }
   });
 });
 

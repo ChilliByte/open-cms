@@ -91,4 +91,40 @@ router.post("/products/add", isAdmin, function(req,res){
   });
 });
 
+router.get("/products/edit", isAdmin, function(req,res){
+  var updatedbool;
+  var products = req.db.collection('products');
+  products.findOne({ _id: req.ObjectId(req.query.id) },function(err, doc) {
+    console.log(doc);
+    if(doc._id){
+      if(req.query.updated=="true"){
+        updatedbool = true;
+      }else{
+        updatedbool = false;
+      }
+      res.render('admin/products-edit', {
+        doc: doc,
+        updated: updatedbool
+      });
+    }else {
+      res.render('message', {
+        title:   '404',
+        message: 'Product not found.'
+      });
+    }
+  });
+});
+
+router.post("/products/edit", isAdmin, function(req,res){
+  var products = req.db.collection('products');
+  products.update({ _id: req.ObjectId(req.body.id) }, {$set:{
+    title:   req.body.title,
+    content: req.body.content
+  }}, function() {
+      res.redirect("/admin/edit?updated=true&id=" + req.query.id);
+  });
+});
+
+
+
 module.exports = router;
