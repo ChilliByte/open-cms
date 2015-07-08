@@ -102,7 +102,7 @@ router.get("/products/edit", isAdmin, function(req,res){
       }else{
         updatedbool = false;
       }
-      res.render('admin/products-edit', {
+      res.render('admin/product-edit', {
         doc: doc,
         updated: updatedbool
       });
