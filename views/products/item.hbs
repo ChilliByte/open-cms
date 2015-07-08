@@ -4,5 +4,6 @@
 <a href="/">Home</a> / <a href="/products">Products</a> / <a href="/products/{{_id}}">{{title}}</a>
 <hr />-->
 <a href="/products">&larr; Back to product list</a>
+{{#if session.isAdmin}} ~ <a href="/admin/products/edit?id={{_id}}">Edit</a>{{/if}}
 <h3>{{title}}</h3>
 {{{content}}}
