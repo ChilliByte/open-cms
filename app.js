@@ -31,7 +31,7 @@ app.use(function (req, res, next){
 });
 
 app.locals.site = {
-  title: process.env.SITE_TITLE || "My Shop"
+  title: process.env.SITE_TITLE || "My Site"
 }
 app.use(function(req, res, next){
   res.locals.session = req.session;
@@ -50,7 +50,7 @@ app.get('/about', function(req, res) {
   });
 });
 
-app.use('/products', require("./routes/products"));
+app.use('/p', require("./routes/pages"));
 
 if(process.env.ADMIN_PANEL=="false"){
   // Admin Panel is disabled, and is therefore inaccessible.

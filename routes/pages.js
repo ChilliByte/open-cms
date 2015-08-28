@@ -11,7 +11,7 @@ router.get("/", function(req, res){
       // ... Add filter code here
       newDocs.push(x);
     }
-    res.render('products/index', {
+    res.render('pages/index', {
       docs: newDocs
     })
   });
@@ -22,7 +22,7 @@ router.get("/:id", function(req, res){
   products.findOne({ _id: req.ObjectId(req.params.id) },function(err, doc) {
     console.log(doc);
     if(doc._id){
-      res.render('products/item', doc);
+      res.render('pages/item', doc);
     }else {
       res.render('message', {
         title:   '404',

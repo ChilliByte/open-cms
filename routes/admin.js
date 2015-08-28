@@ -58,43 +58,43 @@ router.get("/", isAdmin, function(req,res){
   res.render("admin/index");
 });
 
-router.get("/products", isAdmin, function(req,res){
-  var products = req.db.collection('products');
-  products.find(function(err, docs) {
+router.get("/pages", isAdmin, function(req,res){
+  var pages = req.db.collection('pages');
+  pages.find(function(err, docs) {
     var newDocs = [];
     // docs is an array of all the documents in mycollection
     for(var i in docs){
       var x = docs[i];
       newDocs.push(x);
     }
-    res.render('admin/products', {
+    res.render('admin/pages', {
       docs: newDocs
     })
   });
 });
 
-router.get("/products/add", isAdmin, function(req,res){
-  res.render('admin/products-add', {});
+router.get("/pages/add", isAdmin, function(req,res){
+  res.render('admin/pages-add', {});
 });
 
-router.post("/products/add", isAdmin, function(req,res){
-  var products = req.db.collection('products');
-  var newProduct = {};
-  newProduct.title = req.body.title;
-  newProduct.content = req.body.content;
-  products.insert(newProduct, function(err, doc) {
+router.post("/pages/add", isAdmin, function(req,res){
+  var pages = req.db.collection('pages');
+  var newpage = {};
+  newpage.title = req.body.title;
+  newpage.content = req.body.content;
+  pages.insert(newpage, function(err, doc) {
     if(err){
-      res.send("Error adding product. \n"+err)
+      res.send("Error adding page. \n"+err)
     }else{
-      res.redirect("/products/"+doc._id);
+      res.redirect("/pages/"+doc._id);
     }
   });
 });
 
-router.get("/products/edit", isAdmin, function(req,res){
+router.get("/pages/edit", isAdmin, function(req,res){
   var updatedbool;
-  var products = req.db.collection('products');
-  products.findOne({ _id: req.ObjectId(req.query.id) },function(err, doc) {
+  var pages = req.db.collection('pages');
+  pages.findOne({ _id: req.ObjectId(req.query.id) },function(err, doc) {
     console.log(doc);
     if(doc._id){
       if(req.query.updated=="true"){
@@ -102,22 +102,22 @@ router.get("/products/edit", isAdmin, function(req,res){
       }else{
         updatedbool = false;
       }
-      res.render('admin/product-edit', {
+      res.render('admin/page-edit', {
         doc: doc,
         updated: updatedbool
       });
     }else {
       res.render('message', {
         title:   '404',
-        message: 'Product not found.'
+        message: 'page not found.'
       });
     }
   });
 });
 
-router.post("/products/edit", isAdmin, function(req,res){
-  var products = req.db.collection('products');
-  products.update({ _id: req.ObjectId(req.body.id) }, {$set:{
+router.post("/pages/edit", isAdmin, function(req,res){
+  var pages = req.db.collection('pages');
+  pages.update({ _id: req.ObjectId(req.body.id) }, {$set:{
     title:   req.body.title,
     content: req.body.content
   }}, function() {
