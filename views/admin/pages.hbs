@@ -1,0 +1,7 @@
+<h2><a href="/admin/">Admin Panel</a> &bull; Pages</h2> <a href="/admin/pages/add">Add</a>
+<hr />
+<ul>
+  {{#each docs}}
+  <li><a href="/admin/pages/edit?id={{_id}}" title="Edit this page">&#9998;</a> ~ <a href="/p/{{_id}}">{{title}}</a></li>
+  {{/each}}
+</ul>

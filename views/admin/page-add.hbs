@@ -1,0 +1,11 @@
+<a href="/admin/pages">&larr; Back</a>
+<hr />
+<form action="/admin/pages/add" method="post">
+<label for="title">Title</label>
+<input type="text" placeholder="Title of the page" name="title">
+<br />
+<textarea name="content" class="editable"></textarea>
+<br />
+<input type="submit" value="Add">
+</form>
+<script>var editor = new MediumEditor('.editable');</script>
