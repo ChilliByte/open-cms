@@ -1,0 +1,16 @@
+<a href="/admin/aliases">&larr; Back</a>
+<hr />
+<form action="/admin/aliases/add" method="post">
+<label for="path">Path</label>
+<input type="text" placeholder="/about" name="path">
+<br />
+<label for="type">Type</label>
+<select name="type">
+  <option value="redirect">Redirect</option>
+  <option value="mirror">Mirror</option>
+</select>
+<br>
+<label for="pointer">Pointer</label>
+<input type="text" placeholder="/id/dtrvguhujo" name="pointer">
+<input type="submit" value="Add">
+</form>
