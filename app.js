@@ -38,24 +38,77 @@ app.use(function(req, res, next){
   next();
 });
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function(req, res) {
-  res.render('index');
-});
-
-app.get('/about', function(req, res) {
-  res.render('message', {
-    title: 'About',
-    message: 'This is an experimental cart-less shoppping system.'
-  });
-});
-
-app.use('/p', require("./routes/pages"));
+/* START ADMIN SETUP */
 
 if(process.env.ADMIN_PANEL=="false"){
   // Admin Panel is disabled, and is therefore inaccessible.
 }else{
-  app.use('/admin', require("./routes/admin"));
+    app.get("/admin/authorise", function(req,res){
+    var sess = req.session;
+    if(sess.isAdmin==true){
+      res.redirect("/admin/")
+    }
+    var denied;
+    if(req.query.denied=="true"){
+      denied = true;
+    }else{
+      denied = false;
+    }
+    res.render("admin/authorise", {
+      deniedAccess: denied
+    });
+  });
+
+  app.post("/admin/authorise", function(req,res) {
+    var sess = req.session;
+    if(req.body.password==process.env.ADMIN_PASS){
+      sess.isAdmin = true;
+      res.redirect("/admin/");
+    }else{
+      if(sess.isAdmin){
+        res.redirect("/admin/");
+      }else{
+        res.redirect("/admin/authorise?denied=true");
+      }
+    }
+  });
+
+  app.get("/admin/login", isAdmin, function(req,res){
+    res.redirect("/admin/authorise");
+  });
+
+  app.get("/admin/deauthorise", function(req, res){
+    var sess = req.session;
+    sess.isAdmin = false;
+    res.redirect("/");
+  });
+
+  app.get("/admin/logout", isAdmin, function(req,res){
+    res.redirect("/admin/deauthorise");
+  });
+  
+  function isAdmin(req,res,next){
+    var sess = req.session;
+    if(sess.isAdmin){
+      next();
+    }else {
+      res.redirect("/admin/authorise?denied=true");
+    }
+  }
+  
+  app.use('/admin', isAdmin, require("./routes/admin"));
 }
+
+/* END ADMIN SETUP */
+
+// respond with "hello world" when a GET request is made to the homepage
+/*
+app.get('/', function(req, res) {
+  res.render('index');
+});*/
+
+app.use('/p', require("./routes/pages"));
+
+app.use('/', require("./routes/aliases"));
 
 module.exports = app;
