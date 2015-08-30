@@ -1,12 +1,11 @@
 <a href="/admin/aliases">&larr; Back</a>
 <hr />
 <form action="/admin/aliases/add" method="post">
+<input type="hidden" name="id" value="{{doc._id}}" />
 <label for="path">Path</label>
 <input type="text" value="{{doc.path}}" name="path">
 <br />
 <label for="type">Type (CURRENTLY: {{doc.type}})</label>
-
-
 <select name="type">
   <option value="redirect">Redirect</option>
   <option  value="mirror">Mirror</option>
