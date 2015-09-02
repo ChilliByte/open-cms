@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+var format = require('util').format;
+//DB DOCS ARE HERE https://github.com/mongodb/node-mongodb-native/blob/master/Readme.md
 router.get("/", function(req,res){
   res.render("admin/index");
 });
@@ -9,15 +10,12 @@ router.get("/", function(req,res){
 
 router.get("/pages", function(req,res){
   var pages = req.db.collection('pages');
-  pages.find(function(err, docs) {
-    var newDocs = [];
-    // docs is an array of all the documents in mycollection
-    for(var i in docs){
-      var x = docs[i];
-      newDocs.push(x);
-    }
+  pages.find().toArray(function(err, docs) {
+    if(err) throw err;
+    console.log(err);
+    console.log(docs);
     res.render('admin/pages', {
-      docs: newDocs
+      docs: docs
     })
   });
 });
@@ -32,10 +30,11 @@ router.post("/pages/add", function(req,res){
   newpage.title = req.body.title;
   newpage.content = req.body.content;
   pages.insert(newpage, function(err, doc) {
+    console.log(err);
     if(err){
       res.send("Error adding page. \n"+err)
     }else{
-      res.redirect("/p/"+doc._id);
+      res.redirect("/admin/pages?action=added");
     }
   });
 });
@@ -43,7 +42,7 @@ router.post("/pages/add", function(req,res){
 router.get("/pages/edit", function(req,res){
   var updatedbool;
   var pages = req.db.collection('pages');
-  pages.findOne({ _id: req.ObjectId(req.query.id) },function(err, doc) {
+  pages.findOne({ _id: new req.ObjectId(req.query.id) },function(err, doc) {
     console.log(doc);
     if(doc._id){
       if(req.query.updated=="true"){
@@ -66,14 +65,16 @@ router.get("/pages/edit", function(req,res){
 
 router.post("/pages/edit", function(req,res){
   var pages = req.db.collection('pages');
-  pages.update({ id: req.ObjectId(req.body.id)},
+  pages.update({ _id: new req.ObjectId(req.body.id)},
   {
     $set:{
       title:   req.body.title,
       content: req.body.content
-    }
-  },
-  {upsert:false}, function(err, doc) {
+    },
+  },{upsert:false, multi:false, w:1}, function(err, doc) {
+    console.log(req.body);
+    console.log(err);
+    console.log(doc);
       res.redirect("/admin/pages/edit?updated=true&id=" + req.body.id);
   });
 });
@@ -83,7 +84,9 @@ router.post("/pages/edit", function(req,res){
 /* START ALIAS ADMIN */
 router.get("/aliases", function(req,res){
   var aliases = req.db.collection('aliases');
-  aliases.find(function(err, docs) {
+  aliases.find().toArray(function(err, docs) {
+    if(err) throw err;
+    console.log(docs);
     res.render('admin/aliases', {
       docs: docs
     })
@@ -111,7 +114,7 @@ router.post("/aliases/add", function(req,res){
 
 router.get("/aliases/edit", function(req,res){
   var aliases = req.db.collection('aliases');
-  aliases.findOne({ _id: req.ObjectId(req.query.id) },function(err, doc) {
+  aliases.findOne({ _id: new req.ObjectId(req.query.id) }, function(err, doc) {
     console.log(doc);
     if(doc._id){
       res.render('admin/aliases-edit', {
@@ -128,12 +131,19 @@ router.get("/aliases/edit", function(req,res){
 
 router.post("/aliases/edit", function(req,res){
   var aliases = req.db.collection('aliases');
-  aliases.update({ _id: req.ObjectId(req.body.id) }, {$set:{
+  aliases.update({ _id: new req.ObjectId(req.body.id) }, {$set:{
   path : req.body.path,
   type : req.body.type,
   pointer : req.body.pointer
-  }}, function() {
+  }},{upsert:false, multi:false, w:1}, function() {
       res.redirect("/admin/aliases");
+  });
+});
+
+router.post("/object/remove", function(req,res){
+  var collection = req.db.collection(req.body.type);
+  collection.remove({ _id:  new req.ObjectId(req.body.id) }, function(err,result) {
+      res.redirect("/admin/"+req.body.type+"?action=deleted");
   });
 });
 /* END ALIAS ADMIN */

@@ -1,6 +1,6 @@
 <a href="/admin/aliases">&larr; Back</a>
 <hr />
-<form action="/admin/aliases/add" method="post">
+<form action="/admin/aliases/edit" method="post">
 <input type="hidden" name="id" value="{{doc._id}}" />
 <label for="path">Path</label>
 <input type="text" value="{{doc.path}}" name="path">
@@ -13,5 +13,5 @@
 <br>
 <label for="pointer">Pointer</label>
 <input type="text" value="{{doc.pointer}}" name="pointer">
-<input type="submit" value="Add">
+<input type="submit" value="Update">
 </form>

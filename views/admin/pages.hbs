@@ -1,7 +1,19 @@
 <h2><a href="/admin/">Admin Panel</a> &bull; Pages</h2> <a href="/admin/pages/add">Add</a>
 <hr />
-<ul>
+<ul class="ul-no-bullets">
   {{#each docs}}
-  <li><a href="/admin/pages/edit?id={{_id}}" title="Edit this page">&#9998;</a> ~ <a href="/p/{{_id}}">{{title}}</a></li>
+  <li class="li-minus-2em">
+    <form class="inline" action="/admin/pages/edit" method="get">
+      <input type="hidden" name="id" value="{{_id}}" />
+      <input class="btn-empty" type="submit" title="Edit" value="&#9998;">
+    </form>
+    <!-- <a href="/admin/pages/edit?id={{_id}}" title="Edit this page">&#9998;</a>-->
+    <form class="inline" action="/admin/object/remove" method="post">
+      <input type="hidden" name="id" value="{{_id}}" />
+      <input type="hidden" name="type" value="pages" />
+      <input class="btn-empty" type="submit" title="Delete" value="&#9587;">
+    </form>
+    ~ <a href="/p/{{_id}}">{{title}}</a>
+  </li>
   {{/each}}
 </ul>

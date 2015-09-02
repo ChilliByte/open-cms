@@ -51,3 +51,19 @@ hr{
 pre{
   overflow-x: scroll;
 }
+
+/* START HELPER FUNCTIONS */
+.ul-no-bullets{
+    list-style-type: none;
+}
+.li-minus-2em{
+  text-indent: -2em;
+}
+.inline{
+  display: inline;
+}
+.btn-empty{
+  border: none;
+  height: inherit;
+  background-color: transparent;
+}

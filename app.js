@@ -3,10 +3,12 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
-var mongojs = require('mongojs');
+var methodOverride = require('method-override');
 var session = require('express-session');
 var connectMongoStore = require('connect-mongo')(session);
+var mongodb = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
+var format = require('util').format;
 var app = express();
 
 // view engine setup
@@ -21,14 +23,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat',
   store:  new connectMongoStore({ url: process.env.DBURL })
-}))
+}));
 
-var db = mongojs(process.env.DBURL);
+/* NEW MONGODB SETUP */
+// DOCS ARE HERE https://github.com/mongodb/node-mongodb-native/blob/master/Readme.md
 app.use(function (req, res, next){
-  req.db = db;
-  req.ObjectId = mongojs.ObjectId;
-  next();
+ MongoClient.connect(process.env.DBURL, function(err, db) {
+   if(err) throw err;
+   req.db = db;
+   req.ObjectId = mongodb.ObjectID;
+   next();
+ });
 });
+/* END MONGODB SETUP */
 
 app.locals.site = {
   title: process.env.SITE_TITLE || "My Site"

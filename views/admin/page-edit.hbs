@@ -1,10 +1,10 @@
 <a href="/admin/pages">&larr; Back</a>
 <hr />
 {{#if updated}}
-<i>Product data updated.</i>
+<i>Page data updated.</i>
 <br />
 {{/if}}
-<form action="/admin/pages/add" method="post">
+<form action="/admin/pages/edit" method="post">
 <input type="hidden" name="id" value="{{doc._id}}" />
 <label for="title">Title</label>
 <input type="text" value="{{doc.title}}" name="title">
