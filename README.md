@@ -34,6 +34,9 @@ This site uses a variety of Environment Variables.
 |ADMIN_PANEL                 |Disables Admin Panel unless the value is `true`.                      |
 |ADMIN_PASS                  |The password to access the Admin Panel. Make it long and secret.      |
 
+
+
+
 ---
 
 Copyright (c) 2015 Isaac Reid-Guest All Rights Reserved.
