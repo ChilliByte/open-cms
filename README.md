@@ -7,6 +7,22 @@ An experimental CMS system.
 
 On Heroku at [site-system.herokuapp.com](https://site-system.herokuapp.com/).
 
+## Functionality
+
+### Planned
+
+* Collections
+* Timestamps
+
+### In development
+
+
+
+### Working
+
+* Pages
+* Aliases
+
 ## Environment Variables
 
 This site uses a variety of Environment Variables.
