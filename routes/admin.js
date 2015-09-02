@@ -66,11 +66,15 @@ router.get("/pages/edit", function(req,res){
 
 router.post("/pages/edit", function(req,res){
   var pages = req.db.collection('pages');
-  pages.update({ _id: req.ObjectId(req.body.id) }, {$set:{
-    title:   req.body.title,
-    content: req.body.content
-  }}, function() {
-      res.redirect("/admin/pages/edit?updated=true&id=" + req.query.id);
+  pages.update({ id: req.ObjectId(req.body.id)},
+  {
+    $set:{
+      title:   req.body.title,
+      content: req.body.content
+    }
+  },
+  {upsert:false}, function(err, doc) {
+      res.redirect("/admin/pages/edit?updated=true&id=" + req.body.id);
   });
 });
 
