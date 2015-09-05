@@ -7,7 +7,7 @@ router.get("/*", function(req, res){
   var aliases = req.db.collection('aliases');
   aliases.findOne({ path: req.path },function(err, doc) {
     console.log(doc);
-    if(!doc){
+    if(!doc&&req.path=="/"){
         res.render('message', {
           title:   '500',
           message: 'Broken alias. An alias to a particular page needs to be created, for the path: /'
@@ -24,7 +24,7 @@ router.get("/*", function(req, res){
           break;
         case "mirror":
             pages.findOne({ _id: req.ObjectId(doc.pointer) },function(err, page) {
-            if(page._id){
+            if(page){
               res.render('pages/item', page);
             }else {
               res.render('message', {
