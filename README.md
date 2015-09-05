@@ -5,8 +5,6 @@ site-system-port
 
 An experimental CMS system.
 
-[ ![Codeship Status for isaacrg/site-system-port](https://codeship.com/projects/16061770-1696-0133-d8f0-3ac0adaa218a/status?branch=master)](https://codeship.com/projects/93327)
-
 On Heroku at [site-system.herokuapp.com](https://site-system.herokuapp.com/).
 
 ## Functionality
