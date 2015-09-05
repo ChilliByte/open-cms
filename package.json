@@ -1,12 +1,12 @@
 {
-  "name": "shopping-experiment",
+  "name": "site-system",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "test": "node app.js"
   },
-  "description": "A test in making a cart-less shopping service.",
+  "description": "An experimental CMS system.",
   "author": {
     "name": "Isaac Reid-Guest",
     "email": "isaac.reid.guest@gmail.com"
