@@ -27,6 +27,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/medium-editor', express.static(path.join(__dirname, 'node_modules/medium-editor/dist')));
 app.use(session({
   secret: 'keyboard cat',
   store:  new connectMongoStore({ url: process.env.DBURL })
