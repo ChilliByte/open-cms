@@ -11,6 +11,13 @@ var MongoClient = require('mongodb').MongoClient;
 var format = require('util').format;
 var app = express();
 
+//START X-Clacks-Overhead
+app.use(function(req,res,next){
+	res.setHeader('X-Clacks-Overhead', 'GNU Terry Pratchett');
+	next();
+});
+//END   X-Clacks-Overhead
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
