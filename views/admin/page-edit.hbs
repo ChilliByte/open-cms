@@ -13,4 +13,26 @@
 <br />
 <input type="submit" value="Update">
 </form>
-<script>var editor = new MediumEditor('.editable');</script>
+<script>var editor = new MediumEditor('.editable',{
+  buttonLabels:'fontawesome',
+  toolbar: {
+  buttons: [
+    'h2',
+    'h3',
+    'bold',
+    'italic',
+    'underline',
+    'link',
+    'unorderedlist',
+    'orderedlist',
+    'image',
+    'table',
+    'removeFormat'
+  ],
+    static: true,
+    sticky: true
+  },
+  extensions: {
+      table: new MediumEditorTable()
+  }  
+});</script>
