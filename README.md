@@ -1,11 +1,7 @@
 site-system-port
 ----------------
 
-
-
-An experimental CMS system.
-
-On Heroku at [site-system.herokuapp.com](https://site-system.herokuapp.com/).
+An experimental CMS system. On Heroku at [site-system.herokuapp.com](https://site-system.herokuapp.com/).
 
 ## Functionality
 
