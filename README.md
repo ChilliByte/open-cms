@@ -1,23 +1,14 @@
-site-system-port
-----------------
+site-system
+-----------
 
 An experimental CMS system. On Heroku at [site-system.herokuapp.com](https://site-system.herokuapp.com/).
 
-## Functionality
+## Features 
 
-### Planned
-
-* Collections
-* Timestamps
-
-### In development
-
-
-
-### Working
-
-* Pages
-* Aliases
+* [ ] Collections
+* [ ] Timestamps
+* [x] Pages
+* [x] Aliases
 
 ## Environment Variables
 
