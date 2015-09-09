@@ -5,10 +5,11 @@ An experimental CMS system. On Heroku at [site-system.herokuapp.com](https://sit
 
 ## Features 
 
-* [ ] Collections
-* [ ] Timestamps
+* [x] Collections
+* [x] Timestamps
 * [x] Pages
 * [x] Aliases
+* [ ] Google Search embed
 
 ## Environment Variables
 
