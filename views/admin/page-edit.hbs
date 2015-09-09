@@ -1,13 +1,11 @@
-<a href="/admin/pages">&larr; Back</a>
+<a href="/admin/pages">&larr; Back</a> {{#if updated}}<i>Page updated.</i>{{/if}}
 <hr />
-{{#if updated}}
-<i>Page data updated.</i>
-<br />
-{{/if}}
 <form action="/admin/pages/edit" method="post">
 <input type="hidden" name="id" value="{{doc._id}}" />
 <label for="title">Title</label>
 <input type="text" value="{{doc.title}}" name="title">
+<label for="collection">Collection</label>
+<input type="text" value="{{doc.collection}}" name="collection">
 <br />
 <textarea name="content" class="editable">{{{doc.content}}}</textarea>
 <br />

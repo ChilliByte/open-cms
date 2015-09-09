@@ -28,6 +28,7 @@ router.post("/pages/add", function(req,res){
   var pages = req.db.collection('pages');
   var newpage = {};
   newpage.title = req.body.title;
+  newpage.collection = req.body.collection;
   newpage.content = req.body.content;
   pages.insert(newpage, function(err, doc) {
     console.log(err);
@@ -69,6 +70,7 @@ router.post("/pages/edit", function(req,res){
   {
     $set:{
       title:   req.body.title,
+      collection: req.body.collection,
       content: req.body.content
     },
   },{upsert:false, multi:false, w:1}, function(err, doc) {
