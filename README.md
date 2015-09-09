@@ -5,10 +5,12 @@ An experimental CMS system. On Heroku at [site-system.herokuapp.com](https://sit
 
 ## Features 
 
-* [ ] Collections
-* [ ] Timestamps
+* [x] Collections
+* [x] Timestamps
 * [x] Pages
 * [x] Aliases
+* [x] Wysiwig edititing
+* [x] Source editing
 
 ## Environment Variables
 
