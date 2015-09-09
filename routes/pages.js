@@ -22,7 +22,7 @@ router.get("/:id", function(req, res){
   pages.findOne({ _id: req.ObjectId(req.params.id) },function(err, doc) {
     console.log(doc);
     if(doc._id){
-      res.render('pages/item', doc);
+      res.render('pages/item', {doc: doc});
     }else {
       res.render('message', {
         title:   '404',

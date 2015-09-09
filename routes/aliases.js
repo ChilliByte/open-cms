@@ -25,7 +25,7 @@ router.get("/*", function(req, res){
         case "mirror":
             pages.findOne({ _id: req.ObjectId(doc.pointer) },function(err, page) {
             if(page){
-              res.render('pages/item', page);
+              res.render('pages/item', {doc: page});
             }else {
               res.render('message', {
                 title:   '404',

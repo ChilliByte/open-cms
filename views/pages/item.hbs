@@ -1,5 +1,5 @@
-<h2>{{title}}</h2>{{#if session.isAdmin}} ~ <a href="/admin/pages/edit?id={{_id}}">[&#9998;]</a>{{/if}}
+<h2>{{doc.title}}</h2>{{#if session.isAdmin}} ~ <a href="/admin/pages/edit?id={{doc._id}}">[&#9998;]</a>{{/if}}
 <hr />
 
-<!--<h3>{{title}}</h3>-->
-{{{content}}}
+<!--<h3>{{doc.title}}</h3>-->
+{{{doc.content}}}
