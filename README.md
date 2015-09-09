@@ -9,8 +9,8 @@ An experimental CMS system. On Heroku at [site-system.herokuapp.com](https://sit
 * [x] Timestamps
 * [x] Pages
 * [x] Aliases
-* [ ] Wysiwig edititing
-* [ ] Source editing
+* [x] Wysiwig edititing
+* [x] Source editing
 
 ## Environment Variables
 
