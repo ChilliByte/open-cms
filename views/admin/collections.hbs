@@ -1,0 +1,20 @@
+<h2><a href="/admin/">Admin Panel</a> &bull; Collections</h2>
+<hr/>
+<form action="/admin/collections/add" method="post">
+<label for="path">Name</label>
+<input type="text" placeholder="posts" name="name">
+<input type="submit" value="Add">
+</form>
+<hr />
+<ul class="ul-no-bullets">
+  {{#each docs}}
+  <li class="li-minus-2em">
+    <form class="inline" action="/admin/object/remove" method="post">
+      <input type="hidden" name="id" value="{{_id}}" />
+      <input type="hidden" name="type" value="collections" />
+      <input class="btn-empty" type="submit" title="Delete" value="&#9587;">
+    </form>
+   ~ <a href="/c/{{_id}}">{{name}}</a>
+  </li>
+  {{/each}}
+</ul>

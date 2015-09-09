@@ -112,7 +112,20 @@ if(process.env.ADMIN_PANEL=="false"){
       res.redirect("/admin/authorise?denied=true");
     }
   }
-  
+  app.use(function(req, res, next){
+    var isAdminPage;
+    var path = req.path;
+    path.indexOf(1);
+    path.toLowerCase();
+    path = path.split("/")[1];
+    if(path == "admin"){
+      isAdminPage = true;
+    }else{
+      isAdminPage = false;
+    }
+    res.locals.isAdminPage = isAdminPage;
+    next();
+  });
   app.use('/admin', isAdmin, require("./routes/admin"));
 }
 
@@ -125,6 +138,8 @@ app.get('/', function(req, res) {
 });*/
 
 app.use('/p', require("./routes/pages"));
+
+app.use('/c', require("./routes/collections"));
 
 app.use('/', require("./routes/aliases"));
 

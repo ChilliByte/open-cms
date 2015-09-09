@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get("/", function(req, res){
   var pages = req.db.collection('pages');
-  pages.find(function(err, docs) {
+  pages.find().toArray(function(err, docs) {
     var newDocs = [];
     // docs is an array of all the documents in mycollection
     for(var i in docs){

@@ -140,6 +140,35 @@ router.post("/aliases/edit", function(req,res){
   });
 });
 
+router.get("/collections", function(req,res){
+  var collections = req.db.collection('collections');
+  collections.find().toArray(function(err, docs) {
+    if(err) throw err;
+    console.log(err);
+    console.log(docs);
+    res.render('admin/collections', {
+      docs: docs
+    })
+  });
+});
+
+router.get("/collections/add", function(req,res){
+  res.render('admin/collections-add', {});
+});
+
+router.post("/collections/add", function(req,res){
+  var collections = req.db.collection('collections');
+  var newcollection = {};
+  newcollection.name = req.body.name;
+  collections.insert(newcollection, function(err, doc) {
+    if(err){
+      res.send("Error adding page. \n"+err)
+    }else{
+      res.redirect("/admin/collections");
+    }
+  });
+});
+
 router.post("/object/remove", function(req,res){
   var collection = req.db.collection(req.body.type);
   collection.remove({ _id:  new req.ObjectId(req.body.id) }, function(err,result) {
