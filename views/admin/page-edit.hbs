@@ -9,8 +9,16 @@
 <br />
 <textarea name="content" class="editable">{{{doc.content}}}</textarea>
 <br />
+{{#if rawedit}}
+<input type="hidden" name="raw" value="true" />
+{{/if}}
 <input type="submit" value="Update">
 </form>
+<hr />
+{{#if rawedit}}
+<i>Raw edit mode enabled. Click <a href="?raw=false&id={{doc._id}}">here</a> to switch.</i>
+{{else}}
+<i>Wysiwg editing enabled. Click <a href="?raw=true&id={{doc._id}}">here</a> to switch.</i>
 <script>var editor = new MediumEditor('.editable',{
   buttonLabels:'fontawesome',
   toolbar: {
@@ -34,3 +42,4 @@
       table: new MediumEditorTable()
   }  
 });</script>
+{{/if}}

@@ -53,9 +53,15 @@ router.get("/pages/edit", function(req,res){
       }else{
         updatedbool = false;
       }
+      if(req.query.raw=="true"){
+        rawbool = true;
+      }else{
+        rawbool = false;
+      }
       res.render('admin/page-edit', {
         doc: doc,
-        updated: updatedbool
+        updated: updatedbool,
+        rawedit: rawbool
       });
     }else {
       res.render('message', {
@@ -80,7 +86,7 @@ router.post("/pages/edit", function(req,res){
     console.log(req.body);
     console.log(err);
     console.log(doc);
-      res.redirect("/admin/pages/edit?updated=true&id=" + req.body.id);
+      res.redirect("/admin/pages/edit?updated=true&id=" + req.body.id + "&raw=" + req.body.raw || "false");
   });
 });
 
