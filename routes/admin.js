@@ -30,6 +30,8 @@ router.post("/pages/add", function(req,res){
   newpage.title = req.body.title;
   newpage.collection = req.body.collection;
   newpage.content = req.body.content;
+  newpage.dateupdated = new Date();
+  newpage.datecreated = new Date();
   pages.insert(newpage, function(err, doc) {
     console.log(err);
     if(err){
@@ -71,7 +73,8 @@ router.post("/pages/edit", function(req,res){
     $set:{
       title:   req.body.title,
       collection: req.body.collection,
-      content: req.body.content
+      content: req.body.content,
+      dateupdated: new Date()
     },
   },{upsert:false, multi:false, w:1}, function(err, doc) {
     console.log(req.body);
