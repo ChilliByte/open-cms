@@ -1,5 +1,4 @@
-site-system
------------
+# open-cms
 
 An experimental CMS system.
 
