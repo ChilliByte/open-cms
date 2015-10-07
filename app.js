@@ -137,6 +137,8 @@ app.get('/', function(req, res) {
   res.render('index');
 });*/
 
+app.use('/build', require("./build"));
+
 app.use('/p', require("./routes/pages"));
 
 app.use('/c', require("./routes/collections"));
