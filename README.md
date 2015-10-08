@@ -2,6 +2,10 @@
 
 An experimental CMS system.
 
+## Compiler
+
+*A compiler is currently [being developed](https://github.com/isaacrg/open-cms-compiler), which generates static sites, from websites made with open-cms.*
+
 ## Features 
 
 * [x] Collections
