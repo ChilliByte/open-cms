@@ -12,7 +12,7 @@ An experimental CMS system.
 * [x] Timestamps
 * [x] Pages
 * [x] Aliases
-* [x] Wysiwig edititing
+* [x] Wysiwig editing
 * [x] Source editing
 
 ## Environment Variables
